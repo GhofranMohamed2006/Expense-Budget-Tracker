@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-visual">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="visual-content">
+        <span class="section-subtitle">
+          START SOMETHING GREAT
+        </span>
+        <h1>
+          Your Journey to
+          <span>Financial Freedom Starts Here.</span>
+        </h1>
+        <p>
+          Build better money habits, organize your finances
+          and turn your financial goals into reality.
+        </p>
+        <div class="visual-decoration">
+          <span>✦</span>
+          <span>✧</span>
+          <span>✦</span>
+        </div>
+      </div>
+      <p class="visual-footer">
+        Every great journey starts with one step.
+      </p>
+    </div>
+    <div class="auth-form-container">
+      <div class="auth-form-wrapper">
+        <a href="../index.html" class="back-home">
+          ← Back to Home
+        </a>
+        <div class="form-heading">
+          <span class="section-subtitle">
+            CREATE YOUR ACCOUNT
+          </span>
+          <h2>Sign Up</h2>
+          <p>
+            Join Pennywise and start managing your money.
+          </p>
+        </div>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerName">
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="registerName"
+              placeholder="Enter your full name"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="name@example.com"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">
+              Password
+            </label>
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Create a password"
+              minlength="8"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              required
+            >
+          </div>
+          <label class="terms-checkbox">
+            <input type="checkbox" id="acceptTerms" required>
+            <span>
+              I agree to the Terms & Conditions.
+            </span>
+          </label>
+          <button type="submit" class="auth-btn">
+            Create Account
+          </button>
+          <p class="form-message" id="registerMessage"></p>
+        </form>
+        <p class="auth-switch">
+          Already have an account?
+          <a href="login.html">Log In</a>
+        </p>
+      </div>
+    </div>
+  </main>
+  <script src="../js/auth.js"></script>
+</body>
+</html>
