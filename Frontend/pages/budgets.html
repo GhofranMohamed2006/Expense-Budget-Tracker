@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Budgets</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/budgets.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="sidebar-menu">
+        <span class="menu-label">MENU</span>
+        <a href="dashboard.html" class="sidebar-link">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="transactions.html" class="sidebar-link">
+          <i data-lucide="arrow-left-right"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budgets.html" class="sidebar-link active">
+          <i data-lucide="wallet"></i>
+          <span>Budgets</span>
+        </a>
+        <a href="categories.html" class="sidebar-link">
+          <i data-lucide="shapes"></i>
+          <span>Categories</span>
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i data-lucide="chart-no-axes-combined"></i>
+          <span>Reports</span>
+        </a>
+        <span class="menu-label settings-label">PREFERENCES</span>
+        <a href="settings.html" class="sidebar-link">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span>✦</span>
+          <h4>Smart Money Tip</h4>
+          <p>Small savings today can build a better tomorrow.</p>
+        </div>
+        <a href="login.html" class="sidebar-link logout-link">
+          <i data-lucide="log-out"></i>
+          <span>Log Out</span>
+        </a>
+      </div>
+    </aside>
+  <main class="main-content">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="welcome-text">
+        <h2>Budgets</h2>
+        <p>Manage your spending limits and financial goals.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar">GM</div>
+          <div class="user-info">
+            <h4>Ghofran Mohamed</h4>
+            <p>Personal Account</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="dashboard-content budgets-page">
+    <div class="page-heading">
+      <div>
+        <span class="section-subtitle">FINANCIAL PLANNING</span>
+        <h1>My Budgets</h1>
+        <p>Stay in control of your spending, one budget at a time.</p>
+      </div>
+      <button class="btn btn-primary" id="openBudgetModal">
+        <i data-lucide="plus"></i>
+        Create Budget
+      </button>
+    </div>
+    <div class="budget-summary">
+      <div class="budget-summary-card">
+        <div class="summary-icon">
+          <i data-lucide="wallet"></i>
+        </div>
+        <p>Total Budget</p>
+        <h2 id="totalBudget">EGP 0.00</h2>
+      </div>
+      <div class="budget-summary-card">
+        <div class="summary-icon">
+          <i data-lucide="credit-card"></i>
+        </div>
+        <p>Total Spent</p>
+        <h2 id="totalSpent">EGP 0.00</h2>
+      </div>
+      <div class="budget-summary-card">
+        <div class="summary-icon">
+          <i data-lucide="piggy-bank"></i>
+        </div>
+        <p>Remaining</p>
+        <h2 id="totalRemaining">EGP 0.00</h2>
+      </div>
+      <div class="budget-summary-card">
+        <div class="summary-icon">
+          <i data-lucide="layers"></i>
+        </div>
+        <p>Active Budgets</p>
+        <h2 id="budgetCount">0</h2>
+      </div>
+    </div>
+    <section class="budget-section">
+      <div class="section-heading">
+        <div>
+          <h2>Budget Overview</h2>
+          <p>Track how much you spend in each category.</p>
+        </div>
+        <select id="budgetFilter" class="budget-filter">
+          <option value="all">All Budgets</option>
+          <option value="safe">On Track</option>
+          <option value="warning">Near Limit</option>
+          <option value="over">Over Budget</option>
+        </select>
+      </div>
+      <div class="budget-grid" id="budgetGrid">
+        <!-- Budget cards will be added by JavaScript -->
+      </div>
+      <div class="empty-state" id="budgetEmptyState" hidden>
+        <i data-lucide="wallet"></i>
+        <h3>No budgets found</h3>
+        <p>Create your first budget to start tracking your spending.</p>
+        <button class="btn btn-primary" id="emptyCreateBtn">
+          Create Your First Budget
+        </button>
+      </div>
+    </section>
+  </section>
+</main>
+</div>
+<div class="modal-overlay" id="budgetModal">
+  <div class="budget-modal">
+    <div class="modal-header">
+      <div>
+        <h2 id="modalTitle">Create New Budget</h2>
+        <p>Set a spending limit for a category.</p>
+      </div>
+      <button class="close-modal" id="closeBudgetModal" type="button">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <form id="budgetForm">
+      <div class="form-group">
+        <label for="budgetName">Budget Name</label>
+        <input
+          type="text"
+          id="budgetName"
+          placeholder="e.g. Monthly Food Budget"
+          required
+          maxlength="50"
+        >
+      </div>
+      <div class="form-group">
+        <label for="budgetCategory">Category</label>
+        <select id="budgetCategory" required>
+          <option value="">Select a category</option>
+          <option value="Food">Food</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Bills">Bills</option>
+          <option value="Health">Health</option>
+          <option value="Education">Education</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budgetLimit">Budget Limit (EGP)</label>
+        <input
+          type="number"
+          id="budgetLimit"
+          placeholder="Enter budget amount"
+          min="0.01"
+          step="0.01"
+          required
+        >
+      </div>
+      <div class="form-group">
+        <label for="budgetPeriod">Budget Period</label>
+        <select id="budgetPeriod" required>
+          <option value="Monthly">Monthly</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelBudgetModal">
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary" id="saveBudgetBtn">
+          Save Budget
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../js/budgets.js"></script>
+</body>
+</html>
