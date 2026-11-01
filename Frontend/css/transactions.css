@@ -1,0 +1,360 @@
+.transaction-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  margin-bottom: 25px;
+}
+
+.transactions-management {
+  padding: 25px;
+}
+
+.transactions-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+  padding: 11px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+}
+
+.search-box i {
+  width: 16px;
+  color: var(--color-text-muted);
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 11px;
+}
+
+.search-box input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.filter-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-controls select {
+  padding: 11px 13px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  font-size: 10px;
+}
+
+.filter-controls option {
+  background: var(--color-bg);
+}
+
+.transactions-table {
+  min-width: 750px;
+}
+
+.transactions-table th {
+  padding: 15px 12px;
+}
+
+.transactions-table td {
+  padding: 17px 12px;
+}
+
+.transaction-description {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.transaction-note {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+.category-badge,
+.type-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 9px;
+}
+
+.category-badge {
+  color: var(--color-secondary);
+  background: rgba(111, 184, 230, 0.1);
+}
+
+.type-income {
+  color: #69D6A3;
+  background: rgba(105, 214, 163, 0.1);
+}
+
+.type-expense {
+  color: #FF8585;
+  background: rgba(255, 133, 133, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(111, 184, 230, 0.1);
+  color: var(--color-secondary);
+  border-radius: 7px;
+  transition: 0.3s ease;
+}
+
+.action-btn i {
+  width: 14px;
+}
+
+.action-btn:hover {
+  background: rgba(111, 184, 230, 0.2);
+}
+
+.delete-btn {
+  color: #FF8585;
+  background: rgba(255, 133, 133, 0.08);
+}
+
+.delete-btn:hover {
+  background: rgba(255, 133, 133, 0.2);
+}
+
+.empty-state {
+  padding: 55px 20px;
+  text-align: center;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+.empty-state i {
+  width: 40px;
+  height: 40px;
+  color: var(--color-secondary);
+  margin-bottom: 15px;
+}
+
+.empty-state h3 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.transaction-modal {
+  width: 100%;
+  max-width: 550px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 17px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.modal-header h2 {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.close-modal {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  background: rgba(111, 184, 230, 0.1);
+  border-radius: 8px;
+}
+
+.close-modal:hover {
+  color: var(--color-primary);
+}
+
+.close-modal i {
+  width: 17px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.transaction-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.transaction-modal .form-group label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.transaction-modal .form-group input,
+.transaction-modal .form-group select,
+.transaction-modal .form-group textarea {
+  width: 100%;
+  padding: 12px 13px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  outline: none;
+  font-size: 11px;
+}
+
+.transaction-modal .form-group input:focus,
+.transaction-modal .form-group select:focus,
+.transaction-modal .form-group textarea:focus {
+  border-color: var(--color-secondary);
+}
+
+.transaction-modal .form-group input::placeholder,
+.transaction-modal .form-group textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.transaction-modal select option {
+  background: var(--color-bg);
+}
+
+.transaction-modal textarea {
+  resize: vertical;
+}
+
+.modal-message {
+  color: #FF8585;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+}
+
+.save-btn {
+  color: var(--color-bg);
+  background: var(--color-primary);
+}
+
+@media (max-width: 1100px) {
+  .transaction-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .transactions-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-box {
+    width: 100%;
+  }
+  .filter-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .filter-controls select {
+    width: 100%;
+  }
+}
+@media (max-width: 550px) {
+  .transaction-summary {
+    grid-template-columns: 1fr;
+  }
+  .transactions-management {
+    padding: 17px;
+  }
+  .transaction-modal {
+    padding: 22px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+  .modal-actions button {
+    width: 100%;
+  }
+}
