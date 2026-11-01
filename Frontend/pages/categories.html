@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Categories</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/categories.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="sidebar-menu">
+        <span class="menu-label">MENU</span>
+        <a href="dashboard.html" class="sidebar-link">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="transactions.html" class="sidebar-link">
+          <i data-lucide="arrow-left-right"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budgets.html" class="sidebar-link">
+          <i data-lucide="wallet"></i>
+          <span>Budgets</span>
+        </a>
+        <a href="categories.html" class="sidebar-link active">
+          <i data-lucide="shapes"></i>
+          <span>Categories</span>
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i data-lucide="chart-no-axes-combined"></i>
+          <span>Reports</span>
+        </a>
+        <span class="menu-label settings-label">PREFERENCES</span>
+        <a href="settings.html" class="sidebar-link">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span>✦</span>
+          <h4>Smart Money Tip</h4>
+          <p>Small savings today can build a better tomorrow.</p>
+        </div>
+        <a href="login.html" class="sidebar-link logout-link">
+          <i data-lucide="log-out"></i>
+          <span>Log Out</span>
+        </a>
+      </div>
+    </aside>
+  <main class="main-content">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="welcome-text">
+        <h2>Categories</h2>
+        <p>Organize your income and expenses.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar">GM</div>
+          <div class="user-info">
+            <h4>Ghofran Mohamed</h4>
+            <p>Personal Account</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="dashboard-content categories-page">
+      <div class="page-heading">
+        <div>
+          <span class="section-subtitle">ORGANIZE YOUR FINANCES</span>
+          <h1>My Categories</h1>
+          <p>Keep your financial activities organized and easy to track.</p>
+        </div>
+        <button class="btn btn-primary" id="openCategoryModal">
+          <i data-lucide="plus"></i>
+          Add Category
+        </button>
+      </div>
+      <div class="category-summary">
+        <div class="category-summary-card">
+          <div class="category-summary-icon">
+            <i data-lucide="layers"></i>
+          </div>
+          <p>Total Categories</p>
+          <h2 id="totalCategories">0</h2>
+        </div>
+        <div class="category-summary-card">
+          <div class="category-summary-icon">
+            <i data-lucide="trending-up"></i>
+          </div>
+          <p>Income Categories</p>
+          <h2 id="incomeCategories">0</h2>
+        </div>
+        <div class="category-summary-card">
+          <div class="category-summary-icon">
+            <i data-lucide="trending-down"></i>
+          </div>
+          <p>Expense Categories</p>
+          <h2 id="expenseCategories">0</h2>
+        </div>
+      </div>
+      <div class="categories-toolbar">
+        <div>
+          <h2>All Categories</h2>
+          <p>Manage your personal financial categories.</p>
+        </div>
+        <select id="categoryFilter">
+          <option value="all">All Types</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+      <div class="categories-grid" id="categoriesGrid"></div>
+        <div class="category-empty" id="categoryEmpty" hidden>
+          <i data-lucide="shapes"></i>
+          <h3>No categories found</h3>
+          <p>Add a category to start organizing your finances.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="category-modal-overlay" id="categoryModal">
+    <div class="category-modal">
+      <div class="category-modal-header">
+        <div>
+          <h2 id="categoryModalTitle">Add New Category</h2>
+          <p>Create a category for your transactions.</p>
+        </div>
+        <button type="button" id="closeCategoryModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <form id="categoryForm">
+        <div class="form-group">
+          <label for="categoryName">Category Name</label>
+          <input type="text" id="categoryName"
+          placeholder="e.g. Groceries" maxlength="40" required>
+        </div>
+        <div class="form-group">
+          <label for="categoryType">Category Type</label>
+          <select id="categoryType" required>
+            <option value="Expense">Expense</option>
+            <option value="Income">Income</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="categoryIcon">Icon</label>
+          <select id="categoryIcon">
+            <option value="shopping-bag">Shopping</option>
+            <option value="utensils">Food</option>
+            <option value="car">Transportation</option>
+            <option value="heart-pulse">Health</option>
+            <option value="graduation-cap">Education</option>
+            <option value="gamepad-2">Entertainment</option>
+            <option value="house">Home</option>
+            <option value="wallet">Money</option>
+            <option value="briefcase">Work</option>
+            <option value="gift">Gifts</option>
+            <option value="circle-dollar-sign">Other</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelCategoryModal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="saveCategoryBtn">
+            Save Category
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../js/categories.js"></script>
+</body>
+</html>
