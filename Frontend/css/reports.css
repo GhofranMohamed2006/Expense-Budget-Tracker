@@ -1,0 +1,331 @@
+.reports-page {
+  min-width: 0;
+}
+
+/* Buttons (same look as .add-transaction-btn) */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn i {
+  width: 15px;
+}
+
+/* Toolbar + section headings (same as .card-heading) */
+.report-toolbar,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.report-toolbar h2,
+.section-heading h2 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.report-toolbar p,
+.section-heading p,
+.chart-heading p {
+  color: var(--color-text-muted);
+  font-size: 9px;
+  margin-top: 6px;
+}
+
+.report-toolbar select {
+  padding: 8px 10px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.report-toolbar select option {
+  background: var(--color-bg);
+}
+
+/* Summary cards (same as .summary-card) */
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  margin-bottom: 25px;
+}
+
+.report-card {
+  position: relative;
+  min-width: 0;
+  padding: 21px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  transition: 0.3s ease;
+}
+
+.report-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(242, 225, 153, 0.4);
+}
+
+.report-card-icon {
+  position: absolute;
+  top: 21px;
+  right: 21px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+}
+
+.report-card-icon i {
+  width: 17px;
+}
+
+/* .income-icon / .expense-icon come from dashboard.css */
+.savings-icon {
+  color: var(--color-primary);
+  background: rgba(242, 225, 153, 0.1);
+}
+
+.count-icon {
+  color: var(--color-secondary);
+  background: rgba(111, 184, 230, 0.1);
+}
+
+.report-card p {
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+.report-card h2 {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 20px 0 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Charts (same as .dashboard-card + .chart-wrapper) */
+.reports-charts {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 17px;
+  margin-bottom: 25px;
+}
+
+.report-chart-card {
+  min-width: 0;
+  padding: 23px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.chart-heading {
+  margin-bottom: 25px;
+}
+
+.chart-heading h3 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.chart-container {
+  position: relative;
+  height: 260px;
+  width: 100%;
+}
+
+.doughnut-container {
+  max-width: 350px;
+  margin: auto;
+}
+
+/* Insights */
+.insights-section,
+.breakdown-section {
+  margin-bottom: 25px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.insight-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 21px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.insight-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background: rgba(242, 225, 153, 0.1);
+  border-radius: 9px;
+}
+
+.insight-icon i {
+  width: 17px;
+}
+
+.insight-card h3 {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.insight-card p {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.no-insights {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+/* Breakdown (same table look as dashboard) */
+.breakdown-card {
+  padding: 23px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.breakdown-header,
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 1fr 150px 100px;
+  gap: 15px;
+  align-items: center;
+}
+
+.breakdown-header {
+  padding: 13px 10px;
+  color: var(--color-text-muted);
+  font-size: 9px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.breakdown-row {
+  padding: 16px 10px;
+  border-bottom: 1px solid rgba(111, 184, 230, 0.08);
+}
+
+.breakdown-row:last-child {
+  border-bottom: none;
+}
+
+.breakdown-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+}
+
+.breakdown-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.breakdown-amount,
+.breakdown-percentage {
+  font-size: 10px;
+}
+
+.breakdown-percentage {
+  color: var(--color-text-muted);
+}
+
+.breakdown-empty {
+  padding: 25px 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.breakdown-empty[hidden] {
+  display: none;
+}
+
+/* Responsive (same breakpoints as dashboard.css) */
+@media (max-width: 1200px) {
+  .report-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reports-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .insights-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .report-summary,
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-toolbar,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .report-chart-card,
+  .breakdown-card {
+    padding: 17px;
+  }
+
+  .chart-container {
+    height: 230px;
+  }
+
+  .breakdown-header,
+  .breakdown-row {
+    grid-template-columns: 1fr 100px 65px;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Reports</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/reports.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="sidebar-menu">
+        <span class="menu-label">MENU</span>
+        <a href="dashboard.html" class="sidebar-link">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="transactions.html" class="sidebar-link">
+          <i data-lucide="arrow-left-right"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budgets.html" class="sidebar-link">
+          <i data-lucide="wallet"></i>
+          <span>Budgets</span>
+        </a>
+        <a href="categories.html" class="sidebar-link">
+          <i data-lucide="shapes"></i>
+          <span>Categories</span>
+        </a>
+        <a href="reports.html" class="sidebar-link active">
+          <i data-lucide="chart-no-axes-combined"></i>
+          <span>Reports</span>
+        </a>
+        <span class="menu-label settings-label">PREFERENCES</span>
+        <a href="settings.html" class="sidebar-link">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span>✦</span>
+          <h4>Smart Money Tip</h4>
+          <p>Small savings today can build a better tomorrow.</p>
+        </div>
+        <a href="login.html" class="sidebar-link logout-link">
+          <i data-lucide="log-out"></i>
+          <span>Log Out</span>
+        </a>
+      </div>
+    </aside>
+  <main class="main-content">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="welcome-text">
+        <h2>Reports & Analytics</h2>
+        <p>Understand your financial habits.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar">GM</div>
+          <div class="user-info">
+            <h4>Ghofran Mohamed</h4>
+            <p>Personal Account</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="dashboard-content reports-page">
+      <div class="page-heading">
+        <div>
+          <span class="section-subtitle">FINANCIAL INSIGHTS</span>
+          <h1>Reports & Analytics</h1>
+          <p>Get a clearer picture of your financial performance.</p>
+        </div>
+        <button class="btn btn-primary" id="printReport">
+          <i data-lucide="download"></i>
+          Export Report
+        </button>
+      </div>
+      <div class="report-toolbar">
+        <div>
+          <h2>Financial Overview</h2>
+          <p>Review your income and expenses over time.</p>
+        </div>
+        <select id="reportPeriod">
+          <option value="week">Last 7 Days</option>
+          <option value="month" selected>This Month</option>
+          <option value="year">This Year</option>
+          <option value="all">All Time</option>
+        </select>
+      </div>
+      <div class="report-summary">
+        <div class="report-card">
+          <div class="report-card-icon income-icon">
+            <i data-lucide="trending-up"></i>
+          </div>
+          <p>Total Income</p>
+          <h2 id="reportIncome">EGP 0.00</h2>
+        </div>
+        <div class="report-card">
+          <div class="report-card-icon expense-icon">
+            <i data-lucide="trending-down"></i>
+          </div>
+          <p>Total Expenses</p>
+          <h2 id="reportExpenses">EGP 0.00</h2>
+        </div>
+        <div class="report-card">
+          <div class="report-card-icon savings-icon">
+            <i data-lucide="piggy-bank"></i>
+          </div>
+          <p>Net Savings</p>
+          <h2 id="reportSavings">EGP 0.00</h2>
+        </div>
+        <div class="report-card">
+          <div class="report-card-icon count-icon">
+            <i data-lucide="receipt"></i>
+          </div>
+          <p>Transactions</p>
+          <h2 id="reportCount">0</h2>
+        </div>
+      </div>
+      <div class="reports-charts">
+        <div class="report-chart-card">
+          <div class="chart-heading">
+            <div>
+              <h3>Income vs Expenses</h3>
+              <p>Compare your income and spending.</p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="incomeExpenseChart"></canvas>
+          </div>
+        </div>
+        <div class="report-chart-card">
+          <div class="chart-heading">
+            <div>
+              <h3>Expense Distribution</h3>
+              <p>See where your money goes.</p>
+            </div>
+          </div>
+          <div class="chart-container doughnut-container">
+            <canvas id="expenseCategoryChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <section class="insights-section">
+        <div class="section-heading">
+          <div>
+            <h2>Financial Insights</h2>
+            <p>Quick observations based on your transactions.</p>
+          </div>
+        </div>
+        <div class="insights-grid" id="insightsGrid"></div>
+      </section>
+      <section class="breakdown-section">
+        <div class="section-heading">
+          <div>
+            <h2>Expense Breakdown</h2>
+            <p>Your spending by category.</p>
+          </div>
+        </div>
+        <div class="breakdown-card">
+          <div class="breakdown-header">
+            <span>Category</span>
+            <span>Amount</span>
+            <span>Percentage</span>
+          </div>
+        <div id="breakdownList"></div>
+        <div class="breakdown-empty" id="breakdownEmpty" hidden>
+          No expense data available for this period.
+        </div>
+      </div>
+    </section>
+  </section>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../js/reports.js"></script>
+</body>
+</html>
