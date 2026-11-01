@@ -1,0 +1,247 @@
+.settings-page {
+  min-width: 0;
+}
+
+/* Sections (same card look as .dashboard-card) */
+.settings-section {
+  padding: 25px;
+  margin-bottom: 25px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.settings-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.section-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  background: rgba(111, 184, 230, 0.1);
+  border-radius: 9px;
+}
+
+.section-icon i {
+  width: 17px;
+}
+
+.settings-section-heading h2 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.settings-section-heading p {
+  color: var(--color-text-muted);
+  font-size: 9px;
+  margin-top: 6px;
+}
+
+/* Form fields (same as transaction modal fields) */
+.settings-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.settings-page .form-group label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 9px;
+}
+
+.settings-page .form-group input,
+.settings-page .form-group select {
+  width: 100%;
+  padding: 12px 13px;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  outline: none;
+  font-size: 11px;
+}
+
+.settings-page .form-group input:focus,
+.settings-page .form-group select:focus {
+  border-color: var(--color-secondary);
+}
+
+.settings-page .form-group input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.settings-page .form-group select option {
+  background: var(--color-bg);
+}
+
+/* Notifications */
+.notification-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(111, 184, 230, 0.08);
+  cursor: pointer;
+}
+
+.notification-item:first-child {
+  padding-top: 0;
+}
+
+.notification-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.notification-item h3 {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.notification-item p {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+/* Toggle switch */
+.notification-item input {
+  display: none;
+}
+
+.toggle-switch {
+  width: 46px;
+  height: 25px;
+  min-width: 46px;
+  position: relative;
+  background: var(--color-accent);
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 19px;
+  height: 19px;
+  background: var(--color-text-muted);
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.notification-item input:checked + .toggle-switch {
+  background: var(--color-secondary);
+}
+
+.notification-item input:checked + .toggle-switch::before {
+  transform: translateX(21px);
+  background: var(--color-bg);
+}
+
+/* Security note */
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.security-note i {
+  width: 14px;
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+/* Actions (same as modal cancel/save buttons) */
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-reset,
+.btn-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-reset {
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+}
+
+.btn-reset:hover {
+  color: var(--color-text);
+  border-color: var(--color-secondary);
+}
+
+.btn-save {
+  color: var(--color-bg);
+  background: var(--color-primary);
+}
+
+.btn-save:hover {
+  transform: translateY(-3px);
+}
+
+.btn-save i {
+  width: 15px;
+}
+
+.settings-message {
+  min-height: 18px;
+  margin-top: 12px;
+  text-align: right;
+  color: var(--color-secondary);
+  font-size: 11px;
+}
+
+/* Responsive (same breakpoints as dashboard.css) */
+@media (max-width: 850px) {
+  .settings-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .settings-section {
+    padding: 17px;
+  }
+
+  .settings-actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn-reset,
+  .btn-save {
+    width: 100%;
+  }
+}

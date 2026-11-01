@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Settings</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/settings.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="sidebar-menu">
+        <span class="menu-label">MENU</span>
+        <a href="dashboard.html" class="sidebar-link">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="transactions.html" class="sidebar-link">
+          <i data-lucide="arrow-left-right"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budgets.html" class="sidebar-link">
+          <i data-lucide="wallet"></i>
+          <span>Budgets</span>
+        </a>
+        <a href="categories.html" class="sidebar-link">
+          <i data-lucide="shapes"></i>
+          <span>Categories</span>
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i data-lucide="chart-no-axes-combined"></i>
+          <span>Reports</span>
+        </a>
+        <span class="menu-label settings-label">PREFERENCES</span>
+        <a href="settings.html" class="sidebar-link active">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tip">
+          <span>✦</span>
+          <h4>Smart Money Tip</h4>
+          <p>Small savings today can build a better tomorrow.</p>
+        </div>
+        <a href="login.html" class="sidebar-link logout-link">
+          <i data-lucide="log-out"></i>
+          <span>Log Out</span>
+        </a>
+      </div>
+    </aside>
+  <main class="main-content">
+    <header class="topbar">
+      <button class="sidebar-toggle" id="menuToggle" aria-label="Toggle sidebar">
+        <i data-lucide="menu"></i>
+      </button>
+      <div class="welcome-text">
+        <h2>Settings</h2>
+        <p>Manage your account and preferences.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="notification-dot"></span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar">GM</div>
+          <div class="user-info">
+            <h4>Ghofran Mohamed</h4>
+            <p>Personal Account</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="dashboard-content settings-page">
+      <div class="page-heading">
+        <div>
+          <h1>Account Settings</h1>
+          <p>Manage your account and customize your experience.</p>
+        </div>
+      </div>
+      <form id="settingsForm">
+        <section class="settings-section">
+          <div class="settings-section-heading">
+            <div class="section-icon">
+              <i data-lucide="user-round"></i>
+            </div>
+            <div>
+              <h2>Profile Information</h2>
+              <p>Update your personal information.</p>
+            </div>
+          </div>
+          <div class="settings-fields">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            >
+          </div>
+        </div>
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-heading">
+          <div class="section-icon">
+            <i data-lucide="sliders-horizontal"></i>
+          </div>
+          <div>
+            <h2>Preferences</h2>
+            <p>Customize how Pennywise works for you.</p>
+          </div>
+        </div>
+        <div class="settings-fields">
+          <div class="form-group">
+            <label for="currency">Currency</label>
+            <select id="currency">
+              <option value="EGP">Egyptian Pound (EGP)</option>
+              <option value="USD">US Dollar (USD)</option>
+              <option value="EUR">Euro (EUR)</option>
+              <option value="GBP">British Pound (GBP)</option>
+              <option value="SAR">Saudi Riyal (SAR)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="language">Language</label>
+            <select id="language">
+              <option value="English">English</option>
+              <option value="Arabic">Arabic</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="theme">Appearance</label>
+            <select id="theme">
+              <option value="dark">Dark Theme</option>
+              <option value="light">Light Theme</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-heading">
+          <div class="section-icon">
+            <i data-lucide="bell"></i>
+          </div>
+          <div>
+            <h2>Notifications</h2>
+            <p>Choose which notifications you want to receive.</p>
+          </div>
+        </div>
+        <div class="notification-options">
+          <label class="notification-item">
+            <div>
+              <h3>Budget Alerts</h3>
+              <p>Get notified when you approach your budget limit.</p>
+            </div>
+            <input type="checkbox" id="budgetNotifications">
+            <span class="toggle-switch"></span>
+          </label>
+          <label class="notification-item">
+            <div>
+              <h3>Transaction Updates</h3>
+              <p>Receive updates about your transactions.</p>
+            </div>
+            <input type="checkbox" id="transactionNotifications">
+            <span class="toggle-switch"></span>
+          </label>
+          <label class="notification-item">
+            <div>
+              <h3>Monthly Reports</h3>
+              <p>Get a summary of your monthly financial activity.</p>
+            </div>
+            <input type="checkbox" id="reportNotifications">
+            <span class="toggle-switch"></span>
+          </label>
+        </div>
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-heading">
+          <div class="section-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <div>
+            <h2>Security</h2>
+            <p>Keep your account secure.</p>
+          </div>
+        </div>
+        <div class="settings-fields">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input
+              type="password"
+              id="currentPassword"
+              placeholder="Enter current password"
+            >
+          </div>
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input
+              type="password"
+              id="newPassword"
+              placeholder="Enter new password"
+            >
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm new password"
+            >
+          </div>
+        </div>
+        <p class="security-note">
+          <i data-lucide="info"></i>
+          Password changes will be connected to the authentication backend.
+        </p>
+      </section>
+      <div class="settings-actions">
+        <button type="reset" class="btn-reset">
+          Reset
+        </button>
+        <button type="submit" class="btn-save">
+          <i data-lucide="save"></i>
+          Save Changes
+        </button>
+      </div>
+      <p id="settingsMessage" class="settings-message"></p>
+    </form>
+  </section>
+</main>
+</div>
+<script src="../js/settings.js"></script>
+</body>
+</html>
