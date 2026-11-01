@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pennywise helps you track expenses, manage budgets, and understand your financial habits.">
+  <title>Pennywise | Take Control of Your Money</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+  >
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+        <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <div class="nav-actions">
+          <a href="pages/login.html" class="btn btn-secondary">
+            Log In
+          </a>
+          <a href="pages/register.html" class="btn btn-primary">
+            Sign Up
+          </a>
+        </div>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navLinks"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-container">
+        <!-- Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-icon">✦</span>
+            Smart Financial Management
+          </div>
+          <h1>
+            Your Money,
+            <span>Your Masterpiece.</span>
+          </h1>
+          <p class="hero-description">
+            Take control of your finances, track your expenses,
+            and build smarter spending habits.
+            Your journey to financial freedom starts here.
+          </p>
+          <!-- Hero Buttons -->
+          <div class="hero-actions">
+            <a href="pages/register.html" class="btn btn-primary">
+              Get Started
+              <span>→</span>
+            </a>
+            <a href="#features" class="btn btn-secondary">
+              Explore Features
+            </a>
+          </div>
+          <!-- Trust Message -->
+          <div class="hero-trust">
+            <span class="trust-icon">✦</span>
+            <p>
+              Take charge of your money.
+              <strong>One step at a time.</strong>
+            </p>
+          </div>
+        </div>
+        <!-- Hero Visual -->
+        <div class="hero-visual">
+          <div class="visual-glow"></div>
+            <div class="dashboard-preview">
+              <!-- Dashboard Header -->
+              <div class="preview-header">
+                <div>
+                  <span class="preview-label">OVERVIEW</span>
+                  <h3>My Finances</h3>
+                </div>
+                <span class="preview-icon">✦</span>
+              </div>
+              <!-- Balance Card -->
+              <div class="balance-card">
+                <span>Total Balance</span>
+                <h2>EGP 24,850.00</h2>
+                <div class="balance-footer">
+                  <span class="balance-growth">
+                    ↗ 12.5%
+                  </span>
+                  <span>vs last month</span>
+                </div>
+              </div>
+              <!-- Income & Expenses -->
+              <div class="preview-stats">
+                <div class="stat-card">
+                  <div class="stat-heading">
+                    <span class="stat-dot income-dot"></span>
+                    Income
+                  </div>
+                  <h3>EGP 18,500</h3>
+                  <span class="stat-change">
+                    ↗ 8.2%
+                  </span>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-heading">
+                    <span class="stat-dot expense-dot"></span>
+                    Expenses
+                  </div>
+                  <h3>EGP 6,250</h3>
+                  <span class="stat-change expense-change">
+                    ↘ 3.4%
+                  </span>
+                </div>
+              </div>
+              <!-- Spending Overview -->
+              <div class="spending-card">
+                <div class="spending-header">
+                  <div>
+                    <span>Spending Overview</span>
+                    <h3>This Month</h3>
+                  </div>
+                  <span class="spending-icon">↗</span>
+                </div>
+                <div class="chart-placeholder">
+                  <div class="chart-bar" style="--bar-height: 40%"></div>
+                  <div class="chart-bar" style="--bar-height: 65%"></div>
+                  <div class="chart-bar" style="--bar-height: 50%"></div>
+                  <div class="chart-bar" style="--bar-height: 85%"></div>
+                  <div class="chart-bar" style="--bar-height: 60%"></div>
+                  <div class="chart-bar active-bar" style="--bar-height: 95%"></div>
+                  <div class="chart-bar" style="--bar-height: 72%"></div>
+                </div>
+                <div class="chart-labels">
+                  <span>Mon</span>
+                  <span>Tue</span>
+                  <span>Wed</span>
+                  <span>Thu</span>
+                  <span>Fri</span>
+                  <span>Sat</span>
+                  <span>Sun</span>
+                </div>
+              </div>
+            </div>
+            <!-- Floating Message -->
+            <div class="floating-card">
+              <span class="floating-icon">✦</span>
+              <div>
+                <strong>You're doing great!</strong>
+                <p>Keep building smart habits.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+  </main>
+  <!-- Feature Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <!-- Section Heading -->
+      <div class="section-heading">
+        <span class="section-subtitle">
+          ✦ WHAT WE OFFER
+        </span>
+        <h2>
+          Everything You Need to
+          <span>Master Your Money</span>
+        </h2>
+        <p>
+          Powerful tools designed to make managing your
+          finances easier, smarter, and more rewarding.
+        </p>
+      </div>
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <article class="feature-card">
+          <div class="feature-icon">↗</div>
+          <h3>Expense Tracking</h3>
+          <p>
+            Keep track of every expense and know exactly
+            where your money goes.
+          </p>
+          <a href="pages/register.html" class="feature-link">
+            Explore More →
+          </a>
+        </article>
+        <!-- Feature 2 -->
+        <article class="feature-card">
+          <div class="feature-icon">◎</div>
+          <h3>Budget Planning</h3>
+          <p>
+            Create personalized budgets and stay in control
+            of your monthly spending.
+          </p>
+          <a href="pages/register.html" class="feature-link">
+            Explore More →
+          </a>
+        </article>
+        <!-- Feature 3 -->
+        <article class="feature-card">
+          <div class="feature-icon">✧</div>
+          <h3>Financial Insights</h3>
+          <p>
+            Discover your spending habits and make
+            better financial decisions.
+          </p>
+          <a href="pages/register.html" class="feature-link">
+            Explore More →
+          </a>
+        </article>
+        <!-- Feature 4 -->
+        <article class="feature-card">
+          <div class="feature-icon">▥</div>
+          <h3>Smart Reports</h3>
+          <p>
+            Turn your financial data into clear reports
+            and meaningful visualizations.
+          </p>
+          <a href="pages/register.html" class="feature-link">
+            Explore More →
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-subtitle">SIMPLE PROCESS</span>
+        <h2>
+          Take Control in
+          <span>Three Simple Steps</span>
+        </h2>
+        <p>
+          Managing your money doesn't have to be complicated.
+          Start building better financial habits today.
+        </p>
+      </div>
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">✦</div>
+          <h3>Create Your Account</h3>
+          <p>
+            Sign up in seconds and create your personal
+            financial space.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">↗</div>
+          <h3>Track Your Money</h3>
+          <p>
+            Add your income and expenses to understand
+            where your money goes.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">✧</div>
+          <h3>Reach Your Goals</h3>
+          <p>
+            Set budgets, analyze your spending and
+            make smarter financial decisions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container about-container">
+      <div class="about-visual">
+        <div class="about-art">
+          <span class="art-star star-one">✦</span>
+          <span class="art-star star-two">✧</span>
+          <span class="art-star star-three">✦</span>
+          <div class="art-content">
+            <span class="art-label">YOUR FINANCIAL JOURNEY</span>
+            <h3>
+              Every small step
+              builds a better future.
+            </h3>
+            <div class="art-line"></div>
+            <p>Plan · Track · Grow</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-subtitle">ABOUT PENNYWISE</span>
+        <h2>
+          Your Financial Life,
+          <span>Made Simpler.</span>
+        </h2>
+        <p>
+          We believe that managing money should feel simple,
+          clear and empowering.
+          Pennywise helps you organize your income, track
+          expenses, manage budgets and understand your
+          financial habits — all in one place.
+        </p>
+        <p>
+          Our goal is to help you make better financial
+          decisions and build a healthier relationship
+          with your money.
+        </p>
+        <div class="about-points">
+          <div class="about-point">
+            <span>✦</span>
+            <p>Simple and easy to use</p>
+          </div>
+          <div class="about-point">
+            <span>✦</span>
+            <p>Clear financial insights</p>
+          </div>
+          <div class="about-point">
+            <span>✦</span>
+            <p>Better budgeting habits</p>
+          </div>
+        </div>
+        <a href="pages/register.html" class="btn btn-primary">
+          Start Your Journey
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <span class="section-subtitle">GET IN TOUCH</span>
+        <h2>
+          We'd Love to
+          <span>Hear From You.</span>
+        </h2>
+        <p>
+          Have a question or suggestion?
+          Feel free to reach out to us.
+        </p>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Let's Talk!</h3>
+          <p>
+            We're always happy to hear your feedback
+            and help you with your financial journey.
+          </p>
+          <div class="contact-detail">
+            <span>✉</span>
+            <div>
+              <h4>Email</h4>
+              <p>support@pennywise.com</p>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span>⌖</span>
+              <div>
+                <h4>Location</h4>
+                <p>Egypt</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <span>◷</span>
+              <div>
+                <h4>Support Hours</h4>
+                <p>Sunday - Thursday</p>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input
+                type="text"
+                id="contactName"
+                placeholder="Enter your name"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input
+                type="email"
+                id="contactEmail"
+                placeholder="Enter your email"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Your Message</label>
+              <textarea
+                id="contactMessage"
+                rows="5"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+  </section>
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <span class="section-subtitle">YOUR FUTURE STARTS HERE</span>
+        <h2>
+          Make Every Penny
+          <span>Count.</span>
+        </h2>
+        <p>
+          Start your journey toward smarter money management.
+          Your financial masterpiece begins with one step.
+        </p>
+        <a href="pages/register.html" class="btn btn-primary">
+          Create Your Free Account
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">Pennywise</span>
+          </a>
+          <p>
+            Your money deserves a masterpiece.
+            Track, plan and grow with Pennywise.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Account</h4>
+          <a href="pages/login.html">Log In</a>
+          <a href="pages/register.html">Sign Up</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2026 Pennywise. All rights reserved.
+        </p>
+        <p>Made with care for a smarter financial future.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
