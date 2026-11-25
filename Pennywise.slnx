@@ -2,5 +2,5 @@
   <Project Path="Pennywise.BLL/Pennywise.BLL.csproj" />
   <Project Path="Pennywise.Common/Pennywise.Common.csproj" />
   <Project Path="Pennywise.DAL/Pennywise.DAL.csproj" />
-  <Project Path="Pennywise.Presentation/Pennywise.Presentation.csproj" />
+  <Project Path="Pennywise.PL/Pennywise.PL.csproj"/>
 </Solution>
