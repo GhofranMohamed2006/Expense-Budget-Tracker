@@ -1,306 +1,288 @@
-# Pennywise – Transactions Module
+# Pennywise --- Transactions Module
 
-**Developer:** Ebrahim Elghazaly
-**Module:** Transactions
-**Architecture:** N-Tier Architecture
-**Platform:** ASP.NET Core Web API
-**Database:** SQL Server / Entity Framework Core
+```{=html}
+<p align="center">
+```
+`<strong>`{=html}A modular transaction-management component for the
+Pennywise Expense & Budget Tracker`</strong>`{=html}
+```{=html}
+</p>
+```
+```{=html}
+<p align="center">
+```
+`<img alt=".NET" src="https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white">`{=html}
+`<img alt="ASP.NET Core" src="https://img.shields.io/badge/ASP.NET_Core-Web_API-512BD4?logo=dotnet&logoColor=white">`{=html}
+`<img alt="Entity Framework Core" src="https://img.shields.io/badge/Entity_Framework_Core-ORM-6C2EB9">`{=html}
+`<img alt="SQL Server" src="https://img.shields.io/badge/SQL_Server-Database-CC2927?logo=microsoftsqlserver&logoColor=white">`{=html}
+`<img alt="Architecture" src="https://img.shields.io/badge/Architecture-N--Tier-0A7A5A">`{=html}
+```{=html}
+</p>
+```
 
----
+------------------------------------------------------------------------
 
-## 1. Module Overview
+## Overview
 
-The Transactions Module is responsible for managing financial transactions within Pennywise, an Expense and Budget Tracking application.
+The **Transactions Module** is the transaction-management component of
+**Pennywise**, an expense and budget tracking application.
 
-It supports three transaction types:
+It is organized using an **N-Tier Architecture** to keep API handling,
+business operations, data mapping, and persistence concerns separated.
+The module is designed around three transaction types:
 
-- Income
-- Expense
-- Transfer
+-   **Income** --- records money received into an account.
+-   **Expense** --- records money spent from an account.
+-   **Transfer** --- records money moved from a source account to a
+    destination account.
 
-The module follows N-Tier Architecture to separate API communication, business logic, and database access.
+**Module owner:** Ebrahim Elghazaly\
+**Repository:**
+[Expense-Budget-Tracker](https://github.com/GhofranMohamed2006/Expense-Budget-Tracker)\
+**Module directory:** `Transactions/`
 
-## 2. Project Structure
+## Features
 
-```text
+-   Create, retrieve, update, and delete transaction operations exposed
+    through the Transactions API controller, according to the
+    implemented controller actions.
+-   Dedicated request and response DTOs.
+-   Separate create and update validation rules.
+-   Support for Income, Expense, and Transfer transaction types.
+-   Optional transaction descriptions with a maximum length of 500
+    characters.
+-   Decimal amount mapping using `decimal(18,2)` precision.
+-   Entity Framework Core relationship configuration for users,
+    accounts, destination accounts, and categories.
+-   Database indexes on commonly queried transaction fields.
+-   A dedicated service interface and implementation to keep business
+    logic out of the API controller.
+
+## Architecture
+
+The module follows the solution's N-Tier separation:
+
+  -----------------------------------------------------------------------------
+  Layer                   Responsibility          Transactions files
+  ----------------------- ----------------------- -----------------------------
+  Presentation            Receives HTTP requests  `TransactionsController.cs`
+                          and returns API         
+                          responses               
+
+  Business Logic (BLL)    Defines transaction     `DTOs/`, `Interfaces/`,
+                          operations, DTOs,       `Services/`, `Validators/`
+                          validation, and service 
+                          logic                   
+
+  Data Access (DAL)       Defines the transaction `Entities/`,
+                          entity and EF Core      `Configurations/`
+                          mapping                 
+
+  Common                  Holds shared enums used `Pennywise.Common/Enums/`
+                          by the solution         
+  -----------------------------------------------------------------------------
+
+### Module structure
+
+``` text
 Transactions/
-│
+├── README.md
 ├── Pennywise.DAL/
 │   ├── Entities/
 │   │   └── Transaction.cs
 │   └── Configurations/
 │       └── TransactionConfiguration.cs
-│
 ├── Pennywise.BLL/
 │   ├── DTOs/
 │   │   └── Transactions/
 │   │       ├── CreateTransactionsDTO.cs
 │   │       ├── UpdateTransactionsDTO.cs
 │   │       └── TransactionResponseDTO.cs
-│   │
 │   ├── Interfaces/
 │   │   └── Transactions/
 │   │       └── ITransactionService.cs
-│   │
 │   ├── Services/
 │   │   └── Transactions/
 │   │       └── TransactionService.cs
-│   │
 │   └── Validators/
 │       └── Transactions/
 │           ├── CreateTransactionValidator.cs
 │           └── UpdateTransactionValidator.cs
-│
-├── Pennywise.Presentation/
-│   └── Controllers/
-│       └── TransactionsController.cs
-│
-└── README.md
+└── Pennywise.Presentation/
+    └── Controllers/
+        └── TransactionsController.cs
+```
 
+> The module is maintained in its own `Transactions/` directory in the
+> shared repository. Its source files reference the corresponding
+> Pennywise solution projects and shared entities/enums.
 
-3. Architecture Responsibilities
-Data Access Layer (DAL)
-Responsible for database entities and Entity Framework Core configurations.
+## Transaction model
 
-Files:
-- Transaction.cs
-- TransactionConfiguration.cs
-Business Logic Layer (BLL)
-Responsible for transaction operations, business rules, validation, and data transfer objects.
+The transaction entity is associated with:
 
-Files:
-- CreateTransactionsDTO.cs
-- UpdateTransactionsDTO.cs
-- TransactionResponseDTO.cs
-- ITransactionService.cs
-- TransactionService.cs
-- CreateTransactionValidator.cs
-- UpdateTransactionValidator.cs
-Presentation Layer
-Responsible for receiving HTTP requests and returning API responses.
+-   A user (`UserId`).
+-   A source account (`AccountId`).
+-   An optional destination account (`TransferToAccountId`), used for
+    transfers.
+-   An optional category (`CategoryId`).
+-   A transaction type, amount, date, and optional description.
+-   Creation and update timestamps.
 
-File:
+### Transaction types and validation
 
-- TransactionsController.cs
-4. Transaction Entity
-The Transaction entity follows the Pennywise Shared Backend Contract.
-PropertyType
-Idint
-UserIdstring
-AccountIdint
-CategoryIdint?
-TransferToAccountIdint?
-TypeTransactionType
-Amountdecimal
-TransactionDateDateTime
-Descriptionstring?
-CreatedAtDateTime
-UpdatedAtDateTime?
+  -----------------------------------------------------------------------
+  Type                    Category                Destination account
+  ----------------------- ----------------------- -----------------------
+  Income                  Required                Must not be supplied
 
-Financial amounts use decimal(18,2).
+  Expense                 Required                Must not be supplied
 
-Transaction timestamps are intended to use UTC.
-5. Transaction Types
-Income
-Represents money entering an account.
+  Transfer                Optional                Required and must
+                                                  differ from the source
+                                                  account
+  -----------------------------------------------------------------------
 
-Rules:
-- Requires a valid source account.
-- Requires an Income category.
-- Amount must be greater than zero.
-- The account must belong to the authenticated user.
-Expense
-Represents money leaving an account.
+Additional validation includes:
 
-Rules:
-- Requires a valid source account.
-- Requires an Expense category.
-- Amount must be greater than zero.
-- The account must belong to the authenticated user.
-Transfer
-Represents money moving between two accounts.
+-   Source account ID must be a positive integer.
+-   Amount must be greater than zero.
+-   Transaction type must be a defined `TransactionType` value.
+-   Transaction date must be valid.
+-   Description must not exceed 500 characters.
+-   A supplied category ID must be positive.
 
-Rules:
-- Requires a source account.
-- Requires a destination account.
-- Source and destination accounts must be different.
-- Both accounts must belong to the authenticated user.
-- Category is optional.
-- Amount must be greater than zero.
-6. Validation
-The module validates:
-- Positive transaction amount.
-- Valid transaction type.
-- Valid source account ID.
-- Category requirements.
-- Category type compatibility.
-- Transfer destination requirements.
-- Different source and destination accounts.
-- Description maximum length of 500 characters.
-- Valid transaction date.
-Database ownership checks are handled inside the service layer.
-7. DTOs
-CreateTransactionDto
-Contains:
-- AccountId
-- CategoryId
-- TransferToAccountId
-- Type
-- Amount
-- TransactionDate
-- Description
-UpdateTransactionDto
-Contains:
-- CategoryId
-- Amount
-- TransactionDate
-- Description
-The update operation preserves transaction type and source/destination accounts.
-TransactionResponseDto
-Returns transaction information, including:
-- Transaction ID
-- Source account ID and name
-- Category ID and name
-- Destination account ID and name
-- Transaction type
-- Amount
-- Transaction date
-- Description
-- Creation and update timestamps
-The additional response properties should remain aligned with the team's approved API contract.
-8. Service Operations
-ITransactionService provides the following operations:
-MethodDescription
-GetAllAsyncRetrieve user transactions
-GetByIdAsyncRetrieve a specific transaction
-CreateAsyncCreate a transaction
-UpdateAsyncUpdate allowed transaction details
-DeleteAsyncDelete a transaction
+## Data configuration
 
-All database operations use asynchronous Entity Framework Core methods.
-9. API Endpoints
-Base Route:
+`TransactionConfiguration` configures the EF Core entity mapping,
+including:
 
-/api/transactions
+-   Primary key generation.
+-   Required user and source-account references.
+-   `Amount` as `decimal(18,2)`.
+-   Transaction type stored as a string with a maximum length of 20.
+-   Optional description with a maximum length of 500.
+-   Relationships to the user, source account, destination account, and
+    category.
+-   `DeleteBehavior.Restrict` for the configured relationships.
+-   Indexes on `UserId`, `AccountId`, `TransferToAccountId`,
+    `CategoryId`, and `TransactionDate`, plus a composite index on
+    `UserId` and `TransactionDate`.
 
-All transaction endpoints require authentication.
-HTTP MethodEndpointDescription
-GET/api/transactionsGet transactions
-GET/api/transactions/Get transaction details
-POST/api/transactionsCreate transaction
-PUT/api/transactions/Update transaction
-DELETE/api/transactions/Delete transaction
+## Main components
 
-Optional Query Parameters
-The GET endpoint supports:
-- type
-- accountId
-- categoryId
-- fromDate
-- toDate
-- pageNumber
-- pageSize
-Pagination is supported.
-10. Authentication and Security
-The controller uses JWT-based authorization.
+  -----------------------------------------------------------------------
+  File                                Purpose
+  ----------------------------------- -----------------------------------
+  `Transaction.cs`                    Transaction data entity
 
-The current user ID is extracted from authenticated JWT claims.
+  `TransactionConfiguration.cs`       Entity Framework Core mapping and
+                                      relationships
 
-The API does not accept UserId from frontend request bodies.
+  `CreateTransactionsDTO.cs`          Input model for creating a
+                                      transaction
 
-Each operation checks transaction ownership.
+  `UpdateTransactionsDTO.cs`          Input model for updating a
+                                      transaction
 
-Account and category ownership are validated by the service.
-11. Account Balance Integration
-The Transactions Module does not manually store or update account balances.
+  `TransactionResponseDTO.cs`         Response model for transaction data
 
-Account balance is calculated by the Accounts Module using:
-Balance = OpeningBalance
-        + Income
-        - Expense
-        - Transfer Out
-        + Transfer In
+  `ITransactionService.cs`            Contract for transaction business
+                                      operations
 
+  `TransactionService.cs`             Transaction business-logic
+                                      implementation
 
-The Accounts Module is responsible for balance calculations.
-12. Shared Dependencies
-This module relies on existing components from the main Pennywise solution.
+  `CreateTransactionValidator.cs`     Validation rules for creating
+                                      transactions
 
-Required shared components:
-- Pennywise.Common.Enums.TransactionType
-- Pennywise.Common.Enums.CategoryType
-- Pennywise.DAL.Entities.Account
-- Pennywise.DAL.Entities.Category
-- Pennywise.DAL.Entities.ApplicationUser
-- Pennywise.DAL.ApplicationDbContext
-Required database context integration:
-- Transactions DbSet
-- TransactionConfiguration discovery
-Required dependency injection:
+  `UpdateTransactionValidator.cs`     Validation rules for updating
+                                      transactions
 
-ITransactionService → TransactionService
+  `TransactionsController.cs`         HTTP API endpoints for the module
+  -----------------------------------------------------------------------
 
-Required authentication:
+## Integration requirements
 
-JWT authentication configured by the shared Authentication module.
+The module is part of the wider Pennywise solution and depends on shared
+solution components. When integrating it into another checkout of the
+application, verify that:
 
-Important: Shared files are intentionally not duplicated in this module.
-13. Database Integration
-The following files are shared team responsibilities:
-- ApplicationDbContext.cs
-- Program.cs
-- Shared Enums
-- Project files
-- Database migrations
-TransactionConfiguration implements:
+1.  The corresponding `Pennywise.DAL`, `Pennywise.BLL`,
+    `Pennywise.Common`, and Presentation projects are present.
+2.  The `Transaction` entity and its related `Account`, `Category`, and
+    `ApplicationUser` entities are consistent with the shared solution.
+3.  `ApplicationDbContext` exposes `DbSet<Transaction>` and applies the
+    entity configurations.
+4.  The transaction service is registered in dependency injection.
+5.  The SQL Server connection string and database schema are configured
+    for the target environment.
+6.  Authentication and authorization configuration is aligned with the
+    shared application's identity/JWT implementation.
+7.  Required database migrations are created and applied by the team
+    using the shared migration strategy.
 
-IEntityTypeConfiguration<Transaction>
+> This repository folder is a contribution module, not a standalone
+> runnable solution. Build and run the complete Pennywise solution using
+> the team's agreed startup project and configuration.
 
-The main DbContext should discover configurations through:
+## Build and verification
 
-ApplyConfigurationsFromAssembly
+From the full Pennywise solution directory, restore and build the
+solution:
 
-Database migrations must be coordinated with the designated database integration owner.
-14. Team Integration Notes
-Before merging:
-1. Confirm Account and Category navigation properties with their owners.
-2. Confirm the shared TransactionType and CategoryType enums.
-3. Coordinate ApplicationDbContext integration.
-4. Coordinate JWT configuration with the Authentication developer.
-5. Confirm additional response DTO properties.
-6. Confirm the category update behavior.
-7. Coordinate database migration creation.
-15. Build and Testing
-The original Pennywise solution successfully completed:
-dotnet build Pennywise.PL.csproj
+``` powershell
+dotnet restore
+dotnet build
+```
 
+Run the Presentation project using the solution's configured environment
+and connection string:
 
-The Transactions directory contains module source files only.
+``` powershell
+dotnet run --project .\Pennywise.Presentation\Pennywise.PL.csproj
+```
 
-It intentionally does not include the complete shared projects and cannot be built independently without integrating its dependencies into the main solution.
+The exact startup settings, database availability, authentication
+configuration, and migrations must be supplied by the integrated
+solution.
 
-API verification should cover:
-- Income creation.
-- Expense creation.
-- Transfer creation.
-- Invalid transaction amounts.
-- Invalid categories.
-- Account ownership.
-- Transaction ownership.
-- Update behavior.
-- Delete behavior.
-- Unauthorized access.
-Swagger or Postman should be used for endpoint testing.
-16. Git Workflow
-Development branch:
+## API documentation
 
-feature/transactions
+The HTTP routes and request/response contracts are defined in:
 
-All changes should be committed through the dedicated feature branch.
+-   `Pennywise.Presentation/Controllers/TransactionsController.cs`
+-   `Pennywise.BLL/DTOs/Transactions/`
 
-The module should be submitted through a Pull Request after integration checks.
+Consult these files for the exact route templates, HTTP verbs, status
+codes, and payload fields. This README intentionally does not duplicate
+route names that may change during integration.
 
-Developer: Ebrahim Elghazaly
-Project: Pennywise – Expense & Budget Tracker
-Module: Transactions
-Architecture: N-Tier Architecture
+## Design principles
+
+-   **Separation of concerns:** each tier has a focused responsibility.
+-   **Maintainability:** DTOs, validators, interfaces, services, and
+    persistence mapping are separated.
+-   **Data integrity:** relationships and delete behaviors are
+    explicitly configured.
+-   **Validation:** transaction-specific rules are checked before
+    business operations are completed.
+-   **Integration-first:** shared user, account, category, enum,
+    database, and authentication contracts remain owned by the main
+    Pennywise solution.
+
+## Author
+
+**Ebrahim Elghazaly**\
+Transactions Module --- Pennywise Expense & Budget Tracker
+
+------------------------------------------------------------------------
+
+```{=html}
+<p align="center">
+```
+`<sub>`{=html}Part of the Pennywise Expense & Budget Tracker
+project.`</sub>`{=html}
+```{=html}
+</p>
+```
