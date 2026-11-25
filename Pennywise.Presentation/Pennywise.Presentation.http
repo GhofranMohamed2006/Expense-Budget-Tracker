@@ -1,0 +1,6 @@
+@Pennywise.Presentation_HostAddress = http://localhost:5142
+
+GET {{Pennywise.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
