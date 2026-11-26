@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+*.db
+*.db-shm
+*.db-wal
+
+# local machine settings (each developer has their own SQL Server name)
+appsettings.Development.json
