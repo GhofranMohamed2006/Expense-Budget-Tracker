@@ -1,57 +1,49 @@
 ﻿using Pennywise.BLL.Abstractions;
 using Pennywise.BLL.Services;
-using Pennywise.DAL.Abstractions;
+using Pennywise.Common.Abstractions;
 using Pennywise.DAL.Integration;
-using Reports_Integration.PL.Security;
+using Reports_Integration.PL.Infrastructure;
+using Reports_Integration.PL.Middleware;
 
-namespace Reports_Integration.PL
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICurrentUserContext, HttpCurrentUserContext>();
+
+builder.Services.AddScoped<IReportsService, ReportsService>();
+
+builder.Services.AddScoped<
+    ITransactionReportRepository,
+    UnconfiguredTransactionReportRepository>();
+
+var app = builder.Build();
+
+app.UseMiddleware<ReportsExceptionMiddleware>();
+
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
 
-            // MVC
-            builder.Services.AddControllersWithViews();
-
-            // Reports Module - Dependency Injection
-            builder.Services.AddHttpContextAccessor();
-
-            builder.Services.AddScoped<
-                ICurrentUserContext,
-                CurrentUserContext>();
-
-            builder.Services.AddScoped<
-                IReportsService,
-                ReportsService>();
-
-            builder.Services.AddScoped<
-                ITransactionReportRepository,
-                UnconfiguredTransactionReportRepository>();
-
-            var app = builder.Build();
-
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
-
-            app.MapStaticAssets();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
-
-            app.MapControllers();
-
-            app.Run();
-        }
-    }
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "Healthy",
+    module = "Ziad Reports",
+    databaseIntegration = "Not configured"
+}));
+
+app.Run();
+
+public partial class Program;
+

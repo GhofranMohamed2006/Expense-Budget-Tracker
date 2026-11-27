@@ -1,49 +1,49 @@
-﻿namespace Reports_Integration.PL
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-
-            
-using Pennywise.BLL.Abstractions;
+﻿using Pennywise.BLL.Abstractions;
 using Pennywise.BLL.Services;
-using Pennywise.DAL.Abstractions;
+using Pennywise.Common.Abstractions;
 using Pennywise.DAL.Integration;
-using Reports_Integration.PL.Security;
+using Reports_Integration.PL.Infrastructure;
+using Reports_Integration.PL.Middleware;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICurrentUserContext, CurrentUserContext>();
+
+builder.Services.AddScoped<ICurrentUserContext, HttpCurrentUserContext>();
+
 builder.Services.AddScoped<IReportsService, ReportsService>();
-builder.Services.AddScoped<ITransactionReportRepository, UnconfiguredTransactionReportRepository>();
+
+builder.Services.AddScoped<
+    ITransactionReportRepository,
+    UnconfiguredTransactionReportRepository>();
 
 var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+app.UseMiddleware<ReportsExceptionMiddleware>();
 
-            app.UseHttpsRedirection();
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.MapStaticAssets();
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
-
-            app.Run();
-        }
-    }
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "Healthy",
+    module = "Ziad Reports",
+    databaseIntegration = "Not configured"
+}));
+
+app.Run();
+
+public partial class Program;

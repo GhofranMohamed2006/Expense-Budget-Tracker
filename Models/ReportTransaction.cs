@@ -1,11 +1,11 @@
 ﻿namespace Pennywise.Common.Models;
 
-public sealed record ReportTransaction(
-    Guid Id,
-    string UserId,
-    decimal Amount,
-    TransactionType Type,
-    DateTime TransactionDate,
-    Guid? CategoryId,
-    string? CategoryName
-);
+public sealed class ReportTransaction
+{
+    public Guid Id { get; init; } = Guid.NewGuid();
+    public required string UserId { get; init; }
+    public decimal Amount { get; init; }
+    public TransactionType Type { get; init; }
+    public string Category { get; init; } = "Uncategorized";
+    public DateTime Date { get; init; }
+}
