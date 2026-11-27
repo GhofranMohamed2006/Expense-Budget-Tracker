@@ -1,0 +1,49 @@
+﻿using Pennywise.BLL.Abstractions;
+using Pennywise.BLL.Services;
+using Pennywise.Common.Abstractions;
+using Pennywise.DAL.Integration;
+using Reports_Integration.PL.Infrastructure;
+using Reports_Integration.PL.Middleware;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICurrentUserContext, HttpCurrentUserContext>();
+
+builder.Services.AddScoped<IReportsService, ReportsService>();
+
+builder.Services.AddScoped<
+    ITransactionReportRepository,
+    UnconfiguredTransactionReportRepository>();
+
+var app = builder.Build();
+
+app.UseMiddleware<ReportsExceptionMiddleware>();
+
+if (app.Environment.IsDevelopment())
+{
+
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "Healthy",
+    module = "Ziad Reports",
+    databaseIntegration = "Not configured"
+}));
+
+app.Run();
+
+public partial class Program;
+

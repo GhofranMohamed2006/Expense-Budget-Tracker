@@ -1,118 +1,73 @@
-#  Pennywise – Expense & Budget Tracker
+﻿# Ziad - Pennywise Reports Module
 
-**Take Control of Your Money, One Step at a Time.**
+## Overview
 
-Pennywise is a web-based Expense & Budget Tracking application designed to help users manage their personal finances, track income and expenses, organize budgets, and gain better insights into their spending habits.
+An independent .NET 10 Reports API module prepared for future integration
+with the main Pennywise solution.
 
-Originally developed as a mini project, Pennywise received positive feedback from our instructor, which inspired us to expand the idea and rebuild it as a more comprehensive and professional graduation project.
+## Architecture
 
----
+- Pennywise.Common: models, DTOs, repository and user contracts.
+- Pennywise.BLL: reporting calculations and business rules.
+- Pennywise.DAL: data access boundary and unconfigured adapter.
+- Reports-Integration.PL: ASP.NET Core API and HTTP infrastructure.
+- Reports-Integration.Tests: isolated xUnit tests.
 
-##  Project Overview
+## Important Integration Boundary
 
-Managing personal finances can be challenging without proper organization and tracking.
+The production repository is intentionally unconfigured.
 
-Pennywise aims to simplify financial management by providing users with an organized platform where they can:
+No Pennywise database, EF Core context, external authentication,
+or other team member's project is referenced.
 
-* Track their income and expenses.
-* Manage monthly budgets.
-* Monitor their financial activities.
-* Categorize transactions.
-* Visualize spending patterns.
-* Make better financial decisions.
+The API returns HTTP 503 for report requests when the data source
+is not configured.
 
----
+The health endpoint is independent of database availability.
 
-##  Key Features
+## Endpoints
 
-* **Dashboard:** An overview of the user's financial status.
-* **Transaction Management:** Add, view, edit, and delete financial transactions.
-* **Budget Management:** Create and monitor budgets.
-* **Categories:** Organize transactions into different categories.
-* **Financial Reports:** Visualize financial activities and spending patterns.
-* **Responsive Design:** Accessible across different screen sizes.
+- GET /api/reports/summary
+- GET /api/reports/monthly?year=2026
+- GET /api/reports/categories?year=2026&month=11
+- GET /api/reports/trends?months=6
+- GET /health
 
----
+Reports require an authenticated HTTP user with a NameIdentifier or sub claim.
+The module does not configure an authentication provider.
 
-##  Technologies
+## Business Rules
 
-### Frontend
+- Transfers are excluded from income and expense totals.
+- Balance = income - expenses.
+- Category percentages are calculated from total expenses.
+- User filtering is enforced by the service and repository contract.
+- Empty datasets return zero-valued calculations.
+- Monthly trends include months without transactions.
 
-* HTML5
-* CSS3
-* JavaScript
-* Chart.js
-* Lucide Icons
+## Run
 
-### Backend
+```powershell
+dotnet restore
+dotnet build
+dotnet run --project Reports-Integration.PL
+```
 
-* C#
-* SQL Server
-* RESTful APIs
+## Test
 
-*Backend integration is currently under development.*
+```powershell
+dotnet test
+```
 
----
+## Future GitHub Integration
 
-##  Design & UI
+1. Commit this independent module to Ziad's branch.
+2. Push the branch to GitHub.
+3. Open a Pull Request against the main project.
+4. Review namespace and project-reference compatibility.
+5. Implement an adapter for the actual Pennywise database.
+6. Connect the existing authentication system.
+7. Register the adapter and authentication dependencies.
+8. Run the integrated solution tests.
 
-Pennywise features a modern and user-friendly interface designed to make financial management simple and intuitive.
-
-The design focuses on:
-
-* Clean and organized layouts.
-* Intuitive navigation.
-* Clear financial visualizations.
-* Consistent colors and typography.
-
----
-
-##  Team Members
-
-**Team:** FullStack .NET – Team 4
-
-**Team Leader:**
-
-* Ghofran Mohamed Saad Saeed
-
-**Team Members:**
-
-* Ahmed Said Khalifa Kopash
-* Ebrahim Mohamed Ebrahim Elghazaly
-* Mohamed Saeed Basyouni Osman
-* Youssef Sameh Sayed Hegazy
-* Ziad Osama Abdelaziz Elfeky
-
----
-
-##  Project Status
-
-Currently under development as a Full-Stack Graduation Project.
-
-Our goal is to transform the initial mini project into a more complete, scalable, and reliable financial management application.
-
----
-
-##  Future Improvements
-
-* User authentication and authorization.
-* Advanced financial analytics.
-* Monthly and yearly financial reports.
-* Enhanced budget notifications.
-* Improved security and data validation.
-
----
-
-##  Project Structure
-
-The project is organized into separate frontend and backend components to maintain clean code and simplify development and collaboration.
-
----
-
-##  License
-
-This project was developed for educational purposes as part of the DEPI Full Stack .NET Training Program.
-
----
-
-**Made with ❤️ by FullStack .NET – Team 4**
+No merge or database connection is performed by this module.
