@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="Pennywise.BLL/Pennywise.BLL.csproj" />
-  <Project Path="Pennywise.Common/Pennywise.Common.csproj" />
-  <Project Path="Pennywise.DAL/Pennywise.DAL.csproj" />
-  <Project Path="Reports-Integration.PL/Reports-Integration.PL.csproj" />
-  <Project Path="Reports-Integration.Tests/Reports-Integration.Tests.csproj" />
-</Solution>
