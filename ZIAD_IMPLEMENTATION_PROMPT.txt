@@ -1,0 +1,184 @@
+﻿You are a Senior .NET 10 Backend Architect and Engineer.
+
+Your task is to FINISH ZIAD'S REPORTS & INTEGRATION MODULE
+inside the Pennywise project.
+
+MAIN SOLUTION:
+E:\Pennywise.PL
+
+ZIAD MODULE:
+E:\Reports-Integration
+
+STRICT OWNERSHIP RULES:
+1. Work exclusively on Ziad's Reports & Integration module.
+2. Never modify another team member's code.
+3. Never delete or overwrite unrelated project files.
+4. Never recreate the main solution.
+5. Preserve existing architecture and working functionality.
+6. Back up every existing file before modifying it.
+7. Do not fabricate database entities, transaction records,
+   user IDs, authentication, or database configuration.
+8. Do not use fake repositories in production.
+9. Do not claim integration is complete unless it actually works.
+
+EXISTING ARCHITECTURE:
+
+- Pennywise.Common
+- Pennywise.BLL
+- Pennywise.DAL
+- Reports-Integration.PL
+- Reports-Integration.Tests
+
+EXISTING FUNCTIONALITY:
+
+- ReportsService
+- IReportsService
+- ICurrentUserContext
+- ITransactionReportRepository
+- ReportTransaction
+- TransactionType
+- DashboardSummaryDto
+- MonthlyReportDto
+- CategorySpendingDto
+- SpendingTrendDto
+- ReportsController
+
+CURRENT TEST STATUS:
+14 tests passed.
+Build succeeded.
+
+CURRENT KNOWN BLOCKER:
+
+UnconfiguredTransactionReportRepository
+
+This repository is temporary and must be replaced
+with a real adapter connected to the actual Pennywise
+database and transaction entities.
+
+PHASE 1 - INSPECTION
+
+Inspect both solutions completely.
+
+Identify:
+- Existing database contexts.
+- Transaction entities.
+- Category entities.
+- User identity implementation.
+- Authentication configuration.
+- Database provider and connection configuration.
+- Existing dependency injection registrations.
+- Project references and solution structure.
+
+Do not assume that the main solution contains
+a database implementation if it does not.
+
+PHASE 2 - IMPLEMENTATION
+
+Implement only Ziad's module:
+
+1. Connect the reporting repository to the real
+   Pennywise transaction data source if available.
+
+2. Use the authenticated user's actual ID.
+
+3. Ensure users can only access their own transactions.
+
+4. Implement:
+   - Dashboard summary.
+   - Total income.
+   - Total expenses.
+   - Total balance.
+   - Net savings.
+   - Monthly reports.
+   - Category spending.
+   - Category spending percentages.
+   - Monthly spending trends.
+
+5. Exclude transfers from income and expense calculations.
+
+6. Handle empty datasets and invalid parameters.
+
+7. Support CancellationToken.
+
+8. Register all required services through dependency injection.
+
+9. Implement appropriate API validation and error handling.
+
+10. Preserve existing endpoints:
+    GET /api/reports/summary
+    GET /api/reports/monthly
+    GET /api/reports/categories
+    GET /api/reports/trends
+
+11. Keep the implementation compatible with .NET 10.
+
+IMPORTANT:
+If the actual database context or entities are unavailable,
+do not invent them.
+Keep the repository boundary clean and explicitly report
+the missing integration dependency.
+
+PHASE 3 - TESTING
+
+Create or improve tests for:
+
+- Summary calculations.
+- Income and expense calculations.
+- Transfer exclusion.
+- User data isolation.
+- Monthly grouping.
+- Category percentages.
+- Spending trends.
+- Empty datasets.
+- Invalid dates and parameters.
+- Unauthorized requests.
+- Cancellation handling.
+- Repository integration where possible.
+
+Use xUnit.
+
+PHASE 4 - QUALITY CHECK
+
+Run:
+
+dotnet restore "E:\Reports-Integration\Reports-Integration.slnx"
+
+dotnet build "E:\Reports-Integration\Reports-Integration.slnx"
+
+dotnet test "E:\Reports-Integration\Reports-Integration.slnx"
+
+Also build the main solution without modifying
+unrelated projects.
+
+Fix all errors introduced by Ziad's changes.
+
+Do not suppress errors or remove failing tests.
+
+PHASE 5 - FINAL REPORT
+
+Print a clear report containing:
+
+1. Files created.
+2. Files modified.
+3. Database integration status.
+4. Authentication integration status.
+5. API endpoints implemented.
+6. Number of tests passed and failed.
+7. Main solution build status.
+8. Ziad module build status.
+9. Remaining blockers, if any.
+
+FINAL ACCEPTANCE CONDITIONS:
+
+- Ziad's code is isolated.
+- No unrelated team member files are modified.
+- No fake production data.
+- No unconfigured production repository is presented
+  as a completed integration.
+- All available tests pass.
+- Both solutions build successfully.
+
+Do not stop after inspection.
+Implement everything that can be implemented safely.
+Run all verification commands.
+Report honestly what is complete and what is blocked.
