@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennywise | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Pennywise</span>
+      </a>
+      <div class="sidebar-menu">
+        <span class="menu-label">MENU</span>
+        <a href="dashboard.html" class="sidebar-link active">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="transactions.html" class="sidebar-link">
+          <i data-lucide="arrow-left-right"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budgets.html" class="sidebar-link">
+          <i data-lucide="wallet"></i>
+          <span>Budgets</span>
+        </a>
+        <a href="categories.html" class="sidebar-link">
+          <i data-lucide="shapes"></i>
+          <span>Categories</span>
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i data-lucide="chart-no-axes-combined"></i>
+          <span>Reports</span>
+        </a>
+        <span class="menu-label settings-label">PREFERENCES</span>
+          <a href="settings.html" class="sidebar-link">
+            <i data-lucide="settings"></i>
+              <span>Settings</span>
+          </a>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="sidebar-tip">
+            <span>✦</span>
+            <h4>Smart Money Tip</h4>
+            <p>Small savings today can build a better tomorrow.</p>
+          </div>
+          <a href="login.html" class="sidebar-link logout-link">
+            <i data-lucide="log-out"></i>
+            <span>Log Out</span>
+          </a>
+        </div>
+      </aside>
+      <main class="main-content">
+        <header class="topbar">
+          <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+            <i data-lucide="menu"></i>
+          </button>
+          <div class="welcome-text">
+            <h2>Dashboard</h2>
+            <p>Welcome back! Here's your financial overview.</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" aria-label="Notifications">
+              <i data-lucide="bell"></i>
+              <span class="notification-dot"></span>
+            </button>
+            <div class="user-profile">
+              <div class="user-avatar">GM</div>
+              <div class="user-info">
+                <h4>Ghofran Mohamed</h4>
+                <p>Personal Account</p>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="dashboard-content">
+          <div class="page-heading">
+            <div>
+              <span class="section-subtitle">YOUR FINANCIAL SPACE</span>
+              <h1>Financial Overview</h1>
+              <p>Keep track of your money and stay on top of your goals.</p>
+            </div>
+            <button class="add-transaction-btn" id="addTransactionBtn">
+              <i data-lucide="plus"></i>
+              Add Transaction
+            </button>
+          </div>
+          <section class="summary-grid">
+            <article class="summary-card balance-card">
+              <div class="card-top">
+                <span>Total Balance</span>
+                <span class="card-icon">
+                  <i data-lucide="wallet"></i>
+                </span>
+              </div>
+              <h2 id="totalBalance">EGP 24,850.00</h2>
+              <p class="card-note">Your current available balance</p>
+            </article>
+            <article class="summary-card">
+              <div class="card-top">
+                <span>Total Income</span>
+                <span class="card-icon income-icon">
+                  <i data-lucide="trending-up"></i>
+                </span>
+              </div>
+              <h2 id="totalIncome">EGP 18,500.00</h2>
+              <p class="card-note positive">
+                <i data-lucide="arrow-up-right"></i>
+                Money coming in
+              </p>
+            </article>
+            <article class="summary-card">
+              <div class="card-top">
+                <span>Total Expenses</span>
+                <span class="card-icon expense-icon">
+                  <i data-lucide="trending-down"></i>
+                </span>
+              </div>
+              <h2 id="totalExpenses">EGP 6,250.00</h2>
+              <p class="card-note negative">
+                <i data-lucide="arrow-down-right"></i>
+                Money going out
+              </p>
+            </article>
+            <article class="summary-card">
+              <div class="card-top">
+                <span>Monthly Budget</span>
+                <span class="card-icon budget-icon">
+                  <i data-lucide="target"></i>
+                </span>
+              </div>
+              <h2 id="monthlyBudget">EGP 10,000.00</h2>
+              <p class="card-note">Your monthly spending limit</p>
+            </article>
+          </section>
+          <section class="charts-grid">
+            <article class="dashboard-card spending-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Income vs Expenses</h3>
+                  <p>Track your financial activity</p>
+                </div>
+                <select id="chartPeriod">
+                  <option value="week">This Week</option>
+                  <option value="month" selected>This Month</option>
+                  <option value="year">This Year</option>
+                </select>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="spendingChart"></canvas>
+              </div>
+            </article>
+            <article class="dashboard-card category-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Expense Categories</h3>
+                  <p>Where your money goes</p>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="categoryChart"></canvas>
+              </div>
+            </article>
+          </section>
+          <section class="bottom-grid">
+            <article class="dashboard-card transactions-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Recent Transactions</h3>
+                  <p>Your latest financial activities</p>
+                </div>
+                <a href="transactions.html" class="view-all">
+                  View All
+                </a>
+              </div>
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Transaction</th>
+                      <th>Category</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="transactionsList">
+                    <tr>
+                      <td>Monthly Salary</td>
+                      <td>Salary</td>
+                      <td>Oct 28, 2026</td>
+                      <td class="income-amount">+ EGP 15,000</td>
+                    </tr>
+                    <tr>
+                      <td>Grocery Shopping</td>
+                      <td>Food</td>
+                      <td>Oct 27, 2026</td>
+                      <td class="expense-amount">- EGP 1,200</td>
+                    </tr>
+                    <tr>
+                      <td>Online Shopping</td>
+                      <td>Shopping</td>
+                      <td>Oct 25, 2026</td>
+                      <td class="expense-amount">- EGP 850</td>
+                    </tr>
+                    <tr>
+                      <td>Freelance Project</td>
+                      <td>Freelance</td>
+                      <td>Oct 23, 2026</td>
+                      <td class="income-amount">+ EGP 3,500</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+            <article class="dashboard-card budget-card">
+              <div class="card-heading">
+                <div>
+                  <h3>Budget Overview</h3>
+                  <p>Your monthly spending progress</p>
+                </div>
+                <a href="budgets.html" class="view-all">
+                  View All
+                </a>
+              </div>
+              <div class="budget-item">
+                <div class="budget-info">
+                  <span>Food & Groceries</span>
+                  <span>EGP 2,400 / 3,000</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill food-progress"></div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-info">
+                  <span>Transportation</span>
+                  <span>EGP 800 / 1,500</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill transport-progress"></div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-info">
+                  <span>Shopping</span>
+                  <span>EGP 1,800 / 2,000</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill shopping-progress"></div>
+                </div>
+              </div>
+              <div class="budget-item">
+                <div class="budget-info">
+                  <span>Entertainment</span>
+                  <span>EGP 500 / 1,000</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill entertainment-progress"></div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

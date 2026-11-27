@@ -1,0 +1,82 @@
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #EEF3F9;
+  --color-surface: #FFFFFF;
+  --color-primary: #B8901C;
+  --color-secondary: #2B7FB8;
+  --color-accent: #C9D6E6;
+  --color-dark: #061A33;
+  --color-text: #0B1F3A;
+  --color-text-muted: #5B6F86;
+  --color-border: rgba(11, 41, 72, 0.14);
+}
+
+/* Layout surfaces that use fixed colors in dashboard.css */
+[data-theme="light"] .sidebar {
+  background: #FFFFFF;
+}
+
+[data-theme="light"] .topbar {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .balance-card {
+  background: linear-gradient(145deg, #DCEAF8, #FFFFFF);
+}
+
+[data-theme="light"] .sidebar-link:hover,
+[data-theme="light"] .sidebar-link.active {
+  background: rgba(184, 144, 28, 0.12);
+}
+
+/* Text on yellow/gold buttons stays dark navy */
+[data-theme="light"] .add-transaction-btn,
+[data-theme="light"] .btn,
+[data-theme="light"] .btn-save,
+[data-theme="light"] .save-btn,
+[data-theme="light"] .user-avatar {
+  color: #061A33;
+}
+
+[data-theme="light"] .btn-secondary,
+[data-theme="light"] .btn-reset,
+[data-theme="light"] .cancel-btn {
+  color: var(--color-text-muted);
+}
+
+/* Income / expense colors with enough contrast on white */
+[data-theme="light"] .income-amount,
+[data-theme="light"] .positive,
+[data-theme="light"] .type-income,
+[data-theme="light"] .category-type.income,
+[data-theme="light"] .income-icon {
+  color: #1E9E6A;
+}
+
+[data-theme="light"] .expense-amount,
+[data-theme="light"] .negative,
+[data-theme="light"] .type-expense,
+[data-theme="light"] .category-type.expense,
+[data-theme="light"] .expense-icon,
+[data-theme="light"] .delete-btn,
+[data-theme="light"] .budget-actions .delete-budget,
+[data-theme="light"] .category-card-actions .delete-category,
+[data-theme="light"] .status-over,
+[data-theme="light"] .modal-message {
+  color: #D64545;
+}
+
+[data-theme="light"] .progress-over {
+  background: #D64545;
+}
+
+[data-theme="light"] .logout-link:hover {
+  color: #D64545;
+  background: rgba(214, 69, 69, 0.08);
+}
+
+/* Modal overlay a bit lighter */
+[data-theme="light"] .modal-overlay,
+[data-theme="light"] .category-modal-overlay {
+  background: rgba(11, 31, 58, 0.45);
+}
